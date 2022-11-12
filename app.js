@@ -3,10 +3,11 @@ const app = express();
 // for api call
 const https = require("https");
 
+
 const bodyparser = require("body-parser");
 app.use(bodyparser.urlencoded({ extended: true }));
 
-app.use(express.static("public"))
+app.use(express.static("public"));
 
 app.get("/", function (req, res) {
   res.sendFile(__dirname + "/index.html");
@@ -40,8 +41,10 @@ app.post("/", function (req, res) {
       const icon = weatherData.weather[0].icon;
       const imgURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
       // sending to the browser
-      res.write("<h1>The tempeture in "+ query+ " " + temp + " degrees celcius</h1>");
-      res.write("<h3>The Weathre is Currently " + weatherDescribtion + "</h3>");
+      res.write(
+        "<h1>The tempeture in " + query + " " + temp + " degrees celcius</h1>"
+      );
+      res.write("<h2>The Weathre is Currently " + weatherDescribtion + "</h2>");
       res.write("<img src='" + imgURL + "'/>");
       res.send();
     });
